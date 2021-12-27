@@ -9,8 +9,7 @@ import SwiftUI
 import UserNotifications
 
 struct ContentView: View {
-    @EnvironmentObject var eyeReminder: EyeReminder //= EyeReminder()
-//    @ObservedObject var eyeReminder: EyeReminder = EyeReminder()
+    @EnvironmentObject var eyeReminder: EyeReminder
     
     var body: some View {
         
