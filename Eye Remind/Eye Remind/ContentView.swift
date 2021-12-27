@@ -6,25 +6,41 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
-    @ObservedObject var eyeReminder: EyeReminder
+    @EnvironmentObject var eyeReminder: EyeReminder //= EyeReminder()
+//    @ObservedObject var eyeReminder: EyeReminder = EyeReminder()
     
     var body: some View {
-//        VStack {
-//            Toggle("Send notification", isOn:$eyeReminder.isToggled)
-//
-//            if eyeReminder.isToggled {
-//                Text(eyeReminder.message)
-//            }
-//        }
-//        .padding()
-        Text(eyeReminder.message)
+        
+        VStack {
+            HStack {
+                Text("Eye Reminder").bold()
+                Spacer()
+                Toggle("", isOn: $eyeReminder.isToggled)
+                    .toggleStyle(.switch)
+                    .frame(alignment: .center)
+            }
+            
+            Divider()
+
+            HStack {
+                Text("Reminder Frequency")
+                Spacer()
+                Stepper("\(eyeReminder.frequency) minutes", value: $eyeReminder.frequency,
+                        in: 5...60, step: 5)
+            }
+            //TODO: add a graph of some sort to visualize data.
+            //TODO: leverage .frame() to set boundaries for window height, width.
+        }
+        .padding()
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(eyeReminder: EyeReminder())
+        ContentView()
     }
 }

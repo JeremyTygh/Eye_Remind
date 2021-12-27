@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import UserNotifications
 
 class EyeReminder: ObservableObject {
     @Published var reminder: Reminder
     
     init() {
-        reminder = Reminder(isToggled: false, frequency: 20, message: "\(Date())")
+        reminder = Reminder(isToggled: false, frequency: 20)
     }
     
     var isToggled: Bool {
@@ -20,11 +21,8 @@ class EyeReminder: ObservableObject {
     }
     
     var frequency: Int {
-        reminder.frequency
+        get { return reminder.frequency }
+        set { reminder.frequency = newValue }
     }
     
-    var message: String {
-        get { return reminder.message }
-        set { reminder.message = newValue }
-    }
 }
