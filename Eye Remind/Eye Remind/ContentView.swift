@@ -30,8 +30,14 @@ struct ContentView: View {
                 Stepper("\(eyeReminder.frequency) minutes", value: $eyeReminder.frequency,
                         in: 5...60, step: 5)
             }
+            
+            Divider()
+            
+            Text("Count: \(eyeReminder.count)")
             //TODO: add a graph of some sort to visualize data.
             //TODO: leverage .frame() to set boundaries for window height, width.
+            //TODO: store user data in UserDefaults
+            //TODO: create a section of missed notifications (with times). Present option to "claim" as complete or disregard (incomplete).
         }
         .padding()
     }
@@ -41,5 +47,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(EyeReminder())
     }
 }

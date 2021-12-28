@@ -9,6 +9,7 @@ import Foundation
 import UserNotifications
 
 class EyeReminder: ObservableObject {
+    static let shared = EyeReminder() //this is a shared instance for access in app delegate
     @Published var reminder: Reminder
     
     init() {
@@ -23,6 +24,11 @@ class EyeReminder: ObservableObject {
     var frequency: Int {
         get { return reminder.frequency }
         set { reminder.frequency = newValue }
+    }
+    
+    var count: Int {
+        get { return reminder.count }
+        set { reminder.count = newValue }
     }
     
 }

@@ -10,7 +10,8 @@ import UserNotifications
 
 @main
 struct Eye_RemindApp: App {
-    @StateObject var eyeReminder = EyeReminder()
+//    @StateObject var eyeReminder = EyeReminder()
+    @StateObject var eyeReminder = EyeReminder.shared
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     var body: some Scene {
@@ -18,8 +19,5 @@ struct Eye_RemindApp: App {
             ContentView()
                 .environmentObject(eyeReminder)
         }
-        
     }
-    
-
 }

@@ -16,6 +16,8 @@ struct Reminder {
         trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(frequency), repeats: false)
         request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     }
+    
+    var count: Int = 0
 
     var isToggled: Bool {
         didSet {
@@ -63,11 +65,23 @@ struct Reminder {
     private var trigger: UNTimeIntervalNotificationTrigger
     private var request: UNNotificationRequest
 
+
     private mutating func createNotifications() {
+        let completeAction = UNNotificationAction(identifier: "COMPLETE_ACTION",
+              title: "Complete",
+              options: [])
+        let completeCategory =
+              UNNotificationCategory(identifier: "COMPLETE_CATEGORY",
+              actions: [completeAction],
+              intentIdentifiers: [],
+              hiddenPreviewsBodyPlaceholder: "",
+              options: .customDismissAction)
+        
         content = UNMutableNotificationContent()
         content.title = "Take a break"
         content.subtitle = "Please look away for 20 seconds"
         content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "COMPLETE_CATEGORY"
         
         // show this notification x seconds from now
         trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(frequency), repeats: false)
@@ -75,8 +89,10 @@ struct Reminder {
         // choose a random identifier
         request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
+        // add our notification request and category
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request)
+        notificationCenter.setNotificationCategories([completeCategory])
     }
     
     private func requestNotifications() {
