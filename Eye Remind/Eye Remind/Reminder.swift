@@ -18,6 +18,7 @@ struct Reminder {
     }
     
     var count: Int = 0
+    var showingTimer = false
 
     var isToggled: Bool {
         didSet {
@@ -68,8 +69,7 @@ struct Reminder {
 
     private mutating func createNotifications() {
         let completeAction = UNNotificationAction(identifier: "COMPLETE_ACTION",
-              title: "Complete",
-              options: [])
+              title: "Complete", options: [.foreground])
         let completeCategory =
               UNNotificationCategory(identifier: "COMPLETE_CATEGORY",
               actions: [completeAction],
@@ -97,6 +97,10 @@ struct Reminder {
     
     private func requestNotifications() {
         UNUserNotificationCenter.current().add(request)
+    }
+    
+    mutating func toggleTimer() {
+        showingTimer.toggle()
     }
     
 }

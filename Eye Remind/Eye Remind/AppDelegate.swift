@@ -35,9 +35,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
        case "COMPLETE_ACTION":
           //increment count (eventually handle date)
           //using shared instance so we can access view model in this app delegate
-          EyeReminder.shared.count += 1
-           
-          break
+           EyeReminder.shared.toggleTimer()
+           EyeReminder.shared.count += 1
+           break
 
        // Handle other actions…
      

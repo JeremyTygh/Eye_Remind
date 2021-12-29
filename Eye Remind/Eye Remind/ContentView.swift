@@ -10,9 +10,9 @@ import UserNotifications
 
 struct ContentView: View {
     @EnvironmentObject var eyeReminder: EyeReminder
+//    @State private var showingTimer = false
     
     var body: some View {
-        
         VStack {
             HStack {
                 Text("Eye Reminder").bold()
@@ -34,11 +34,20 @@ struct ContentView: View {
             Divider()
             
             Text("Count: \(eyeReminder.count)")
+            if eyeReminder.showingTimer {
+                DismissingTimer()
+            }
+           
+            //TODO: figure out why timer doesn't appear until click following launch from notification.
+            //TODO: store user data in UserDefaults
             //TODO: add a graph of some sort to visualize data.
             //TODO: leverage .frame() to set boundaries for window height, width.
-            //TODO: store user data in UserDefaults
+            //TODO: make the timer look nice
             //TODO: create a section of missed notifications (with times). Present option to "claim" as complete or disregard (incomplete).
         }
+//        .sheet(isPresented: $eyeReminder.showingTimer) {
+//            DismissingTimer()
+//        }
         .padding()
     }
 }

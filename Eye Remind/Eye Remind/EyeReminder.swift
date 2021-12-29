@@ -21,6 +21,11 @@ class EyeReminder: ObservableObject {
         set { reminder.isToggled = newValue }
     }
     
+    var showingTimer: Bool {
+        get { return reminder.showingTimer }
+        set { reminder.showingTimer = newValue }
+    }
+    
     var frequency: Int {
         get { return reminder.frequency }
         set { reminder.frequency = newValue }
@@ -29,6 +34,10 @@ class EyeReminder: ObservableObject {
     var count: Int {
         get { return reminder.count }
         set { reminder.count = newValue }
+    }
+    
+    func toggleTimer() {
+        reminder.toggleTimer()
     }
     
 }
