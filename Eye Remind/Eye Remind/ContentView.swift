@@ -33,16 +33,14 @@ struct ContentView: View {
             
             Divider()
             
-            Text("Count: \(eyeReminder.count)")
-            if eyeReminder.showingTimer {
-                DismissingTimer()
-            }
+//            Text("Count: \(eyeReminder.count)")
+
            
+            //IDEA: Play song during countdown, stop when done!
             //TODO: figure out why timer doesn't appear until click following launch from notification.
             //TODO: store user data in UserDefaults
             //TODO: add a graph of some sort to visualize data.
             //TODO: leverage .frame() to set boundaries for window height, width.
-            //TODO: make the timer look nice
             //TODO: create a section of missed notifications (with times). Present option to "claim" as complete or disregard (incomplete).
         }
 //        .sheet(isPresented: $eyeReminder.showingTimer) {
@@ -51,7 +49,6 @@ struct ContentView: View {
         .padding()
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

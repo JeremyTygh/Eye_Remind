@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DD2BA60B277BC06F00BCE465 /* DismissingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2BA60A277BC06F00BCE465 /* DismissingTimer.swift */; };
+		DD2BA60E277D005C00BCE465 /* CircularTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2BA60D277D005C00BCE465 /* CircularTimer.swift */; };
 		DDDAD42927740ECB00285BA5 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDAD42827740ECB00285BA5 /* Reminder.swift */; };
 		DDDAD42D27740FEF00285BA5 /* EyeReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDAD42C27740FEF00285BA5 /* EyeReminder.swift */; };
 		DDDAD4302774E96D00285BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDAD42F2774E96D00285BA5 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		DD2BA60A277BC06F00BCE465 /* DismissingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissingTimer.swift; sourceTree = "<group>"; };
 		DD2BA60C277BDAB800BCE465 /* snap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = snap.m4a; sourceTree = "<group>"; };
+		DD2BA60D277D005C00BCE465 /* CircularTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimer.swift; sourceTree = "<group>"; };
 		DDDAD42827740ECB00285BA5 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		DDDAD42C27740FEF00285BA5 /* EyeReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeReminder.swift; sourceTree = "<group>"; };
 		DDDAD42F2774E96D00285BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				DDECAB432773B2CA00AB2DDF /* Eye_RemindApp.swift */,
 				DDECAB452773B2CA00AB2DDF /* ContentView.swift */,
 				DD2BA60A277BC06F00BCE465 /* DismissingTimer.swift */,
+				DD2BA60D277D005C00BCE465 /* CircularTimer.swift */,
 				DDDAD42F2774E96D00285BA5 /* AppDelegate.swift */,
 				DDDAD42C27740FEF00285BA5 /* EyeReminder.swift */,
 				DDDAD42827740ECB00285BA5 /* Reminder.swift */,
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2BA60E277D005C00BCE465 /* CircularTimer.swift in Sources */,
 				DDDAD42927740ECB00285BA5 /* Reminder.swift in Sources */,
 				DDDAD42D27740FEF00285BA5 /* EyeReminder.swift in Sources */,
 				DDECAB462773B2CA00AB2DDF /* ContentView.swift in Sources */,

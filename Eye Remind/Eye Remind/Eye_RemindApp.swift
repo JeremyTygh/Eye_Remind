@@ -16,8 +16,11 @@ struct Eye_RemindApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(eyeReminder)
+            VStack {
+                ContentView()
+                DismissingTimer(isRunning: $eyeReminder.showingTimer)
+            }
+            .environmentObject(eyeReminder)
         }
     }
 }

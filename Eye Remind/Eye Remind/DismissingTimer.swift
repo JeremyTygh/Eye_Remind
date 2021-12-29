@@ -6,43 +6,84 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct DismissingTimer: View {
     @State private var timeRemaining = 20
+    @Binding var isRunning: Bool
+    @State var timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     @EnvironmentObject var eyeReminder: EyeReminder
     
-    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+    @State var progressValue: Float  = 0.0 //for CircularTimer
+
 //    @Environment(\.presentationMode) var isPresented
         //note: this will be deprecated soon. On macOS 12.0 and up, use isPresented instead.
     
     var body: some View {
         VStack {
-            Text("Time Remaining: \(timeRemaining)")
-                .font(.largeTitle)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                //the above 2 view modifiers are to stop odd truncating behavior.
+            Group {
+                Text("Time Remaining: \(timeRemaining)")
+                    .foregroundColor(isRunning ? .primary : .gray)
+                    .font(.largeTitle)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    //the above 2 view modifiers are to stop odd truncating behavior.
+                CircularTimer(progress: self.$progressValue)
+                    .frame(width: 150.0, height: 150.0)
+                    .padding()
+            }
                 .onReceive(timer) { time in
-                    if self.timeRemaining > 0 {
+                    if self.timeRemaining > 0 && isRunning && eyeReminder.isToggled {
                         self.timeRemaining -= 1
-                    } else {
+                        calculateProgress()
+                    } else if isRunning {
                         NSSound.beep() //play beep sound
-                        eyeReminder.showingTimer = false
+                        stopTimer()
+                        EyeReminder.shared.showingTimer = false
+                        progressValue = 0.0
 //                        isPresented.wrappedValue.dismiss()
+                    } else {
+                        stopTimer()
+                        progressValue = 0.0
                     }
                 }
-            Button("Dismiss") {
-//                isPresented.wrappedValue.dismiss()
-                eyeReminder.showingTimer = false
-            }
+                .onChange(of: isRunning) { newValue in
+                    if newValue == true {
+                        startTimer()
+                    } else {
+                        stopTimer()
+                        progressValue = 0.0
+                    }
+                }
+                .onAppear {
+                    if isRunning && eyeReminder.isToggled {
+                        startTimer()
+                    } else {
+                        stopTimer()
+                        progressValue = 0.0
+                    }
+                }
         }
         .padding()
     }
-}
-
-struct DismissingTimer_Previews: PreviewProvider {
-    static var previews: some View {
-        DismissingTimer()
+    
+    func calculateProgress() {
+//        self.progressValue = Float(1 - (timeRemaining / 20))
+        self.progressValue += 0.05
+    }
+    
+    func stopTimer() {
+        self.timer.upstream.connect().cancel()
+        self.timeRemaining = 0
+    }
+    
+    func startTimer() {
+        self.timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+        self.timeRemaining = 20
     }
 }
+
+//struct DismissingTimer_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DismissingTimer()
+//    }
+//}
