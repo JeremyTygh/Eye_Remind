@@ -3,10 +3,10 @@
 A macOS reminder app based on the popular 20-20-20 rule to prevent digital eye strain.
 Leverages SwiftUI and is an exercise in managing notifications through the [User Notifications Framework](https://developer.apple.com/documentation/usernotifications). 
 
-> A newer version of the application.
-<img width="535" alt="image" src="https://user-images.githubusercontent.com/55996049/147710253-5301676d-45a9-44ac-9403-8c995385cc6e.png">
+> The latest iteration of the application.
+<img width="542" alt="image" src="https://user-images.githubusercontent.com/55996049/147792807-bd4fa45f-af98-40f1-ac5a-75128e2db7fd.png">
 
-
-> An early iteration of the application.
-<img width="365" alt="image" src="https://user-images.githubusercontent.com/55996049/147424824-b9a3e537-04b1-4f7c-874a-5747c03e542a.png">
+> ColorPicker added to Preferences.
+<img width="241" alt="image" src="https://user-images.githubusercontent.com/55996049/147794610-3682d0f6-7590-49e2-aa8b-40f9527f275d.png">
+<img width="228" alt="image" src="https://user-images.githubusercontent.com/55996049/147794637-b908ab4f-32c6-4894-849b-267ce3a78c68.png">
 
