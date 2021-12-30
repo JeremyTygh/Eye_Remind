@@ -13,7 +13,7 @@ struct Reminder {
         self.isToggled = isToggled
         self.frequency = frequency
         content = UNMutableNotificationContent()
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(frequency), repeats: false)
+        trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(60 * frequency), repeats: true)
         request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     }
     
@@ -52,7 +52,6 @@ struct Reminder {
     var frequency: Int {
         didSet {
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            //frequency = 60 * frequency //convert into minutes
             if isToggled {
                 createNotifications()
                 requestNotifications()
@@ -84,7 +83,7 @@ struct Reminder {
         content.categoryIdentifier = "COMPLETE_CATEGORY"
         
         // show this notification x seconds from now
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(frequency), repeats: false)
+        trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(60 * frequency), repeats: true)
 
         // choose a random identifier
         request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
