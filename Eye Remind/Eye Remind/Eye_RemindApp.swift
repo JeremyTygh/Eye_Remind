@@ -18,6 +18,10 @@ struct Eye_RemindApp: App {
             VStack {
                 ContentView()
                 DismissingTimer(isRunning: $eyeReminder.showingTimer)
+                Text("Next notification: \(eyeReminder.nextNotificationTime ?? Date())")
+                    .opacity(eyeReminder.nextNotificationTime == nil ? 0 : 1)
+                    .padding()
+                    .font(.title3)
             }
             .environmentObject(eyeReminder)
         }
@@ -31,7 +35,7 @@ struct Eye_RemindApp: App {
 }
 
 //IDEA: Play song during countdown, stop when done!
-//TODO: add countdown to when notification is about to send. (or simply put "Next reminder will send at 0:00AM/PM")
+//TODO: Fix bug where time changes after timer completes.
 //TODO: leverage .frame() to set boundaries for window height, width.
 //TODO: Fix app appearing in foreground when notification is dismissed.
 //TODO: create a section of missed notifications (with times). Present option to "claim" as complete or disregard (incomplete).

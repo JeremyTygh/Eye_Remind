@@ -12,9 +12,6 @@ struct Reminder {
     init(isToggled: Bool, frequency: Int) {
         self.isToggled = isToggled
         self.frequency = frequency
-        content = UNMutableNotificationContent()
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(60 * frequency), repeats: true)
-        request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
     }
     
     var count: Int = 0
@@ -61,9 +58,17 @@ struct Reminder {
         //add it as a request (only create and add new notification if isToggled is true).
     }
     
-    private var content: UNMutableNotificationContent
-    private var trigger: UNTimeIntervalNotificationTrigger
-    private var request: UNNotificationRequest
+    private var content: UNMutableNotificationContent? = nil
+    private var trigger: UNTimeIntervalNotificationTrigger? = nil
+    private var request: UNNotificationRequest? = nil
+    
+    var nextNotificationTime: Date? {
+        if isToggled && trigger != nil {
+            return trigger?.nextTriggerDate()
+        }
+        
+        return nil
+    }
 
 
     private mutating func createNotifications() {
@@ -77,25 +82,25 @@ struct Reminder {
               options: .customDismissAction)
         
         content = UNMutableNotificationContent()
-        content.title = "Take a break"
-        content.subtitle = "Please look away for 20 seconds"
-        content.sound = UNNotificationSound.default
-        content.categoryIdentifier = "COMPLETE_CATEGORY"
+        content?.title = "Take a break"
+        content?.subtitle = "Please look away for 20 seconds"
+        content?.sound = UNNotificationSound.default
+        content?.categoryIdentifier = "COMPLETE_CATEGORY"
         
         // show this notification x seconds from now
         trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(60 * frequency), repeats: true)
 
         // choose a random identifier
-        request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        request = UNNotificationRequest(identifier: UUID().uuidString, content: content!, trigger: trigger)
 
         // add our notification request and category
         let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.add(request)
+        notificationCenter.add(request!)
         notificationCenter.setNotificationCategories([completeCategory])
     }
     
     private func requestNotifications() {
-        UNUserNotificationCenter.current().add(request)
+        UNUserNotificationCenter.current().add(request!)
     }
     
     mutating func toggleTimer() {

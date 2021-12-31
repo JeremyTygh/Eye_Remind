@@ -42,6 +42,10 @@ class EyeReminder: ObservableObject {
         }
     }
     
+    var nextNotificationTime: Date? {
+        reminder.nextNotificationTime
+    }
+    
     var count: Int {
         get { return reminder.count }
         set { reminder.count = newValue }
